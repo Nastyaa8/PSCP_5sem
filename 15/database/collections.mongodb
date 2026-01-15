@@ -1,0 +1,32 @@
+use('BSTU');
+
+
+db.faculty.drop();
+db.faculty.insertMany([
+    { "faculty": "ИДиП", "faculty_name": "Издателькое дело и полиграфия", "faculty_code": "01" },
+    { "faculty": "ХТиТ", "faculty_name": "Химическая технология и техника", "faculty_code": "02" },
+    { "faculty": "ЛХФ",  "faculty_name": "Лесохозяйственный факультет", "faculty_code": "03" },
+    { "faculty": "ИЭФ",  "faculty_name": "Инженерно-экономический факультет", "faculty_code": "04" },
+    { "faculty": "ТТЛП", "faculty_name": "Технология и техника лесной промышленности", "faculty_code": "05" },
+    { "faculty": "ТОВ",  "faculty_name": "Технология органических веществ", "faculty_code": "06" }
+]);
+
+
+db.pulpit.drop();
+db.pulpit.insertMany([
+    { "pulpit": "ИСиТ",     "pulpit_name": "Информационных систем и технологий", "faculty": "ИДиП", "pulpit_code": "P01" },
+    { "pulpit": "ПОиСОИ",   "pulpit_name": "Полиграфического оборудования и систем обработки информации", "faculty": "ИДиП", "pulpit_code": "P02" },
+    { "pulpit": "ЛВ",       "pulpit_name": "Лесоводства", "faculty": "ЛХФ", "pulpit_code": "P03" },
+    { "pulpit": "ОВ",       "pulpit_name": "Охотоведения", "faculty": "ЛХФ", "pulpit_code": "P04" },
+    { "pulpit": "ЛУ",       "pulpit_name": "Лесоустройства", "faculty": "ЛХФ", "pulpit_code": "P05" },
+    { "pulpit": "ЛЗиДВ",    "pulpit_name": "Лесозащиты и древесиноведения", "faculty": "ЛХФ", "pulpit_code": "P06" },
+    { "pulpit": "ЛПиСПС",   "pulpit_name": "Ландшафтного проектирования и садово-паркового строительства", "faculty": "ЛХФ", "pulpit_code": "P07" },
+    { "pulpit": "ТЛ",       "pulpit_name": "Транспорта леса", "faculty": "ТТЛП", "pulpit_code": "P08" },
+    { "pulpit": "ЛМиЛЗ",    "pulpit_name": "Лесных машин и технологии лесозаготовок", "faculty": "ТТЛП", "pulpit_code": "P09" },
+    { "pulpit": "ОХ",       "pulpit_name": "Органической химии", "faculty": "ТОВ", "pulpit_code": "P10" },
+    { "pulpit": "ТНХСиППМ", "pulpit_name": "Технологии нефтехимического синтеза и переработки полимерных материалов", "faculty": "ТОВ", "pulpit_code": "P11" },
+    { "pulpit": "ТНВиОХТ",  "pulpit_name": "Технологии неорганических веществ и общей химической технологии", "faculty": "ХТиТ", "pulpit_code": "P12" },
+    { "pulpit": "ХТЭПиМЭЕ", "pulpit_name": "Химии, технологии электрохимических производств и материалов электронной техники", "faculty": "ХТиТ", "pulpit_code": "P13" },
+    { "pulpit": "ЭТиМ",     "pulpit_name": "Экономической теории и маркетинга", "faculty": "ИЭФ", "pulpit_code": "P14" },
+    { "pulpit": "МиЭП",     "pulpit_name": "Менеджмента и экономики природопользования", "faculty": "ИЭФ", "pulpit_code": "P15" }
+]);

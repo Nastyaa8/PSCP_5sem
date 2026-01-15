@@ -1,0 +1,101 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    /* Нежно-розовый фон страницы */
+    background-color: #fff0f5; 
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 15px; /* Немного скруглил углы для мягкости */
+    /* Тень с легким розовым оттенком */
+    box-shadow: 0 4px 15px rgba(219, 112, 147, 0.2);
+}
+
+h1 {
+    text-align: center;
+    /* Темно-бордовый/розовый цвет для заголовка */
+    color: #880e4f; 
+}
+
+.form-section,
+.list-section {
+    margin-bottom: 20px;
+}
+
+.form-section h2,
+.list-section h2 {
+    /* Цвет подзаголовков */
+    color: #ad1457; 
+}
+
+input[type="text"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 10px;
+    /* Светло-розовая рамка */
+    border: 1px solid #f48fb1; 
+    border-radius: 4px;
+    background-color: #fffafa;
+}
+
+input[type="text"]:focus {
+    outline: none;
+    border-color: #e91e63; /* Ярче при нажатии */
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    /* Основной цвет кнопок - приятный розовый */
+    background-color: #f06292; 
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    /* Темнее при наведении */
+    background-color: #ec407a; 
+}
+
+#pulpitList {
+    list-style-type: none;
+    padding: 0;
+}
+
+#pulpitList li {
+    padding: 10px;
+    /* Разделители списка */
+    border-bottom: 1px solid #fce4ec; 
+    color: #555;
+}
+
+#pulpitList li:last-child {
+    border-bottom: none;
+}
+
+.error-section {
+    color: #c2185b;
+    background-color: #fce4ec;
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #f8bbd0;
+    border-radius: 4px;
+}
+
+.hidden {
+    display: none;
+}
