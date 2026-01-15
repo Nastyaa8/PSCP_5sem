@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>03-01</title>
+</head>
+<body>
+    <h1>Factorial steps with time</h1>
+    <div id="results"></div>
+</body>
+<script>
+    const resultContainer = document.getElementById('results');
+    const startTime = Date.now();
+    async function getResults(){
+        for(let x = 0; x <= 120; x++){
+            let response = await fetch('http://localhost:5000/fact?k=' + x);
+            const data = await response.json();
+            const iEndTime = Date.now() - startTime;
+            
+            const resultElement = document.createElement('p');
+            resultElement.innerHTML = `${x}. Результат: ${iEndTime}-${x}\/${data.fact}`
+            resultContainer.appendChild(resultElement);
+        }
+        const endTime = Date.now();
+        const totalTimeElement = document.createElement('h3');
+        totalTimeElement.innerText = `Общее время выполнения в ms: ${endTime - startTime}`;
+        document.body.appendChild(totalTimeElement);
+    }
+    getResults();
+</script>
+</html>

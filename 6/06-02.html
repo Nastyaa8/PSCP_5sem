@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Отправка письма</title>
+  <style>
+    body {
+      background-color: #ffe6f2; 
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    form {
+      background-color: #fff0f5;
+      padding: 20px 30px;
+      border-radius: 10px;
+      
+      text-align: center;
+      width: 320px;
+    }
+
+    h2 {
+      color: #d63384;
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+      color: #555;
+      font-size: 14px;
+    }
+
+    input, textarea {
+      width: 90%;
+      padding: 8px;
+      margin-top: 5px;
+      border: 1px solid #f8a5c2;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+
+    button {
+      background-color: #ff99cc;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      margin-top: 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 15px;
+    }
+
+    button:hover {
+      background-color: #ff66b2;
+    }
+  </style>
+</head>
+<body>
+  <form method="POST" action="/send">
+    <h2>Форма отправки письма</h2>
+
+    <label>Отправитель:</label>
+    <input type="email" name="from" required placeholder="Введите email"><br>
+
+    <label>Получатель:</label>
+    <input type="email" name="to" required placeholder="Введите email"><br>
+
+    <label>Сообщение:</label>
+    <textarea name="message" rows="5" cols="40" required placeholder="Введите сообщение"></textarea><br>
+
+    <button type="submit">Отправить</button>
+  </form>
+</body>
+</html>

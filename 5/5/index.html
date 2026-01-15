@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>DB Client</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<h1>DB Client</h1>
+
+<h2>GET All Rows</h2>
+<button onclick="getRows()">Get Rows</button>
+<pre id="getResult"></pre>
+
+<h2>POST New Row</h2>
+Name: <input id="postName" type="text">
+Birthday: <input id="postBday" type="date">
+<button onclick="postRow()">Add Row</button>
+<pre id="postResult"></pre>
+
+<h2>DELETE Row</h2>
+ID: <input id="deleteId" type="number">
+<button onclick="deleteRow()">Delete Row</button>
+<pre id="deleteResult"></pre>
+
+<h2>PUT Update Row</h2>
+ID: <input id="putId" type="number" onchange="loadRow()">
+Name: <input id="putName" type="text">
+Birthday: <input id="putBday" type="date">
+<button onclick="putRow()">Update Row</button>
+<pre id="putResult"></pre>
+
+<script>
+async function getRows() {
+    try {
+        const res = await fetch('/api/db');
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || 'Ошибка при получении данных');
+        document.getElementById('getResult').textContent = JSON.stringify(data, null, 2);
+    } catch (err) {
+        document.getElementById('getResult').textContent = JSON.stringify({ error: err.message }, null, 2);
+    }
+}
+
+async function postRow() {
+    const name = document.getElementById('postName').value.trim();
+    const bday = document.getElementById('postBday').value;
+
+    try {
+        const res = await fetch('/api/db', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name, bday })
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error);
+        document.getElementById('postResult').textContent = JSON.stringify(data, null, 2);
+        await getRows(); // обновить список после добавления
+    } catch (err) {
+        document.getElementById('postResult').textContent = JSON.stringify({ error: err.message }, null, 2);
+    }
+}
+
+async function deleteRow() {
+    const idVal = document.getElementById('deleteId').value;
+    const id = parseInt(idVal, 10);
+
+    try {
+        const res = await fetch(`/api/db?id=${id}`, { method: 'DELETE' });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error);
+        document.getElementById('deleteResult').textContent = JSON.stringify(data, null, 2);
+        await getRows(); // обновить список после удаления
+    } catch (err) {
+        document.getElementById('deleteResult').textContent = JSON.stringify({ error: err.message }, null, 2);
+    }
+}
+
+async function loadRow() {
+    const idVal = document.getElementById('putId').value;
+    const id = parseInt(idVal, 10);
+    if (!id) return;
+
+    try {
+        const res = await fetch(`/api/db?id=${id}`);
+        const data = await res.json();
+        if (!res.ok || !data) {
+            document.getElementById('putResult').textContent = JSON.stringify({ error: data?.error || 'Row not found' }, null, 2);
+            return;
+        }
+        document.getElementById('putName').value = data.name || '';
+        document.getElementById('putBday').value = data.bday || '';
+    } catch (err) {
+        document.getElementById('putResult').textContent = JSON.stringify({ error: err.message }, null, 2);
+    }
+}
+
+async function putRow() {
+    const idVal = document.getElementById('putId').value;
+    const id = parseInt(idVal, 10);
+    const name = document.getElementById('putName').value.trim();
+    const bday = document.getElementById('putBday').value;
+
+    try {
+        const res = await fetch('/api/db', {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id, name, bday })
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error);
+        document.getElementById('putResult').textContent = JSON.stringify(data, null, 2);
+        await getRows(); // обновить после изменения
+    } catch (err) {
+        document.getElementById('putResult').textContent = JSON.stringify({ error: err.message }, null, 2);
+    }
+}
+</script>
+</body>
+</html>

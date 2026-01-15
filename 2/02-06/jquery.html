@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>jQuery Ajax Example</title>
+ 
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <h1>Асинхронный запрос с помощью jQuery.ajax()</h1>
+  <div id="fio"></div>
+
+  <script>
+
+    $(document).ready(function() {
+      $.ajax({
+        url: '/api/name',        
+        method: 'GET',         
+        success: function(data) { 
+          $('#fio').text(data);
+        },
+        error: function(xhr, status, error) { 
+          $('#fio').text('Ошибка: ' + error);
+        }
+      });
+    });
+  </script>
+</body>
+</html>

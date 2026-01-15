@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>XMLHttpRequest</title>
+</head>
+<body>
+  <h1>XMLHttpRequest</h1>
+  <button id="btn">Получить ФИО</button>
+  <div id="result"></div>
+
+  <script>
+    document.getElementById('btn').addEventListener('click', () => {
+      const xhr = new XMLHttpRequest();
+      xhr.open('GET', '/api/name', true);
+      xhr.onload = function() {
+        if (xhr.status === 200) {
+          document.getElementById('result').textContent = xhr.responseText;
+        } else {
+          document.getElementById('result').textContent = 'Ошибка: ' + xhr.status;
+        }
+      };
+      xhr.onerror = function() {
+        document.getElementById('result').textContent = 'Ошибка соединения';
+      };
+      xhr.send();
+    });
+  </script>
+</body>
+</html>

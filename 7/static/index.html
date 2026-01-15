@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Static File Server</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="/static/script.js" defer></script>
+</head>
+<body>
+    <h1>Static File Server</h1>
+
+    <h2>CSS файл</h2>
+    <p>Текст, стилизованный с помощью подключенного CSS файла.</p>
+
+    <h2>JavaScript файл</h2>
+    <button onclick="showAlert()">Нажмите, чтобы выполнить скрипт</button>
+
+    <h2>Изображение PNG</h2>
+    <img src="/static/image.png" alt="Пример изображения" width="300">
+
+    <h2>Видео MP4</h2>
+    <video controls width="300">
+        <source src="/static/video.mp4" type="video/mp4">
+        Ваш браузер не поддерживает элемент видео.
+    </video>
+
+    <h2>DOCX файл</h2>
+    <a href="/static/file.docx" download>Скачать DOCX файл</a>
+
+    <h2>JSON файл:</h2>
+    <button id="fetch-json">Загрузить JSON</button>
+    <pre id="json-content"></pre>
+
+    <h2>XML файл:</h2>
+    <button id="fetch-xml">Загрузить XML</button>
+    <pre id="xml-content"></pre>
+
+    <h2>Результаты:</h2>
+    <pre id="display-content"></pre>
+
+    <script>
+        function showAlert() {
+            alert("Hello! This is a JavaScript alert.");
+        }
+
+        document.getElementById('fetch-json').addEventListener('click', async () => {
+            const response = await fetch('/static/data.json');
+            const data = await response.json();
+            document.getElementById('display-content').innerText = JSON.stringify(data, null, 2);
+        });
+
+        document.getElementById('fetch-xml').addEventListener('click', async () => {
+            const response = await fetch('/static/data.xml');
+            const text = await response.text();
+            document.getElementById('display-content').innerText = text;
+        });
+    </script>
+</body>
+</html>
